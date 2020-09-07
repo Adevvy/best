@@ -230,20 +230,14 @@ local Mouses = cmdlp:GetMouse()
 cmdm = Mouses
 -- we dont have this many owners just alts
 local Devs = {
-	["progamer421minus1"] = "Owner",
-	["octoberboy68plus1"] = "Owner",
-	["pigeoncult"] = "Owner",
-	["knifemarks"] = "Owner",
-	["CMD_X"] = "Owner",
-	["Curvn"] = "Dev",
-	["4444445678102"] = "Owner",
-	["coryhofmann"] = "Dev", -- Curvns ALT YOU FAT HEAD
+	["D3M0NZIN"] = "Owner",
+	["Adevvy"] = "Owner",
+	["8irdy"] = "Dev", -- Curvns ALT YOU FAT HEAD
 }
 
 DevCords = {
-	"pigeon#1818";
-	"hz#4777";
-	"Curvn#2646";
+	"Adevvy#6551";
+	"nice try bro#8509";
 }
 
 local Donors = {
@@ -333,7 +327,7 @@ defaultsettings = {
 	hotkeyesp = '';
 	hotkeyaimbot = '';
 	prefix = '.';
-	prompt = 'CMD-X Prompt >';
+	prompt = 'Admin Prompt >';
 	enterCMD = {};
 	gotoPos = 0;
 	gotoPosSide = 0;
@@ -441,7 +435,7 @@ function saves()
 				hotkeyesp = ''
 				hotkeyaimbot = ''
 				prefix = '.'
-				prompt = 'CMD-X Prompt >'
+				prompt = 'Admin Prompt >'
 				enterCMD = {}
 				gotoPos = 0
 				gotoPosSide = 0
@@ -488,7 +482,7 @@ function saves()
 		hotkeyesp = ''
 		hotkeyaimbot = ''
 		prefix = '.'
-		prompt = 'CMD-X Prompt >'
+		prompt = 'Admin Prompt >'
 		enterCMD = {}
 		gotoPos = 0
 		gotoPosSide = 0

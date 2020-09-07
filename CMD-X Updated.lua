@@ -1,9 +1,9 @@
 ---------------------------------------|
 if not game:FindFirstChild("PlayerGui") then repeat wait() until game:IsLoaded() and game:GetService("CoreGui") and game:GetService("Players").LocalPlayer and game:GetService("Players").LocalPlayer.PlayerGui end
 -- Constraints: -----------------------|
-local ver = "1.7.9"
+local ver = "1.8.0"
 local nextupd = "05/09/2020"
-local cordCode = "discord.gg/cmd"
+local cordCode = "coming soon!"
 local changeLog = {
 	"Need help? Join our discord! "..cordCode;
 }
@@ -231,8 +231,7 @@ cmdm = Mouses
 -- we dont have this many owners just alts
 local Devs = {
 	["D3M0NZIN"] = "Owner",
-	["Adevvy"] = "Owner",
-	["8irdy"] = "Dev", -- Curvns ALT YOU FAT HEAD
+	["8irdy"] = "Dev",
 }
 
 DevCords = {
@@ -242,7 +241,7 @@ DevCords = {
 
 local Donors = {
 	["OminousDemons"] = "1",
-	["8irdy"] = "1",
+	["6c5"] = "1",
 
 	["badvibesishere"] = "2",
 	["acidhim"] = "2",
@@ -251,8 +250,8 @@ local Donors = {
 	["underbuying"] = "Custom1",
 	["heybrothats"] = "Custom2",
 	["RobloxDeveloperMon"] = "Custom3",
-	["Irritatory"] = "Custom4",
-	["D3M0NZIN"] = "Custom5" -- top donor {$200}
+	["Squadmane"] = "Custom4",
+	["RealNoahsNoah_YT"] = "Custom5" -- top donor {$200}
 }
 
 local Tier = {
@@ -287,9 +286,9 @@ local Tier = {
 		SCHAT = "EX-TOP"
 	},
 	["Custom5"] = {
-		Tag = "ADEVVY",
+		Tag = "DuBz_Bubby",
 		Color = "RGBDev",
-		SCHAT = "SCRIPT CREATOR"
+		SCHAT = "TOP DONOR"
 	}
 }
 
@@ -327,7 +326,7 @@ defaultsettings = {
 	hotkeyesp = '';
 	hotkeyaimbot = '';
 	prefix = '.';
-	prompt = 'Admin Prompt >';
+	prompt = 'CMD-X Prompt >';
 	enterCMD = {};
 	gotoPos = 0;
 	gotoPosSide = 0;
@@ -435,7 +434,7 @@ function saves()
 				hotkeyesp = ''
 				hotkeyaimbot = ''
 				prefix = '.'
-				prompt = 'Admin Prompt >'
+				prompt = 'CMD-X Prompt >'
 				enterCMD = {}
 				gotoPos = 0
 				gotoPosSide = 0
@@ -482,7 +481,7 @@ function saves()
 		hotkeyesp = ''
 		hotkeyaimbot = ''
 		prefix = '.'
-		prompt = 'Admin Prompt >'
+		prompt = 'CMD-X Prompt >'
 		enterCMD = {}
 		gotoPos = 0
 		gotoPosSide = 0
@@ -2268,6 +2267,9 @@ CMDS.commands = {
 	["goto"] = "Teleports your character to the player.",
 	["walkto"] = "Walks your character to the player.",
 	["unwalkto"] = "()",
+	["walktopos"] = "Walks your character to the position.",
+	["walktopart"] = "Walks your character to the part.",
+	["walktoclass"] = "Walks your character to the class.",
 	["refresh"] = "Respawns your character on the location of entering this command.",
 	["reset"] = "Resets your character.",
 	["savepos"] = "Saves your characters position.",
@@ -2781,6 +2783,9 @@ CMDS.usage = {
 	["remind"] = "(num) (h / m / s) (str)",
 	["goto"] = "(plr)",
 	["walkto"] = "(plr)",
+	["walktopos"] = "(x | y | z)",
+	["walktopart"] = "(part)",
+	["walktoclass"] = "(class)",
 	["savepos"] = "(str)",
 	["loadpos"] = "(str)",
 	["flyspeed"] = "(num)",
@@ -2954,7 +2959,7 @@ CMDS.usage = {
 	["logspam"] = "(str)",
 	["logchat"] = "(str)",
 	["hd"] = "(str)",
-	["colourbubbles"] = "(bgx, bgy, bgz) (tx, ty, tz)",
+	["colourbubbles"] = "(bgx | bgy | bgz) (tx | ty | tz)",
 	["kohls"] = "(str)",
 	["transparentbubbles"] = "(num)",
 	["robloxfromdiscordid"] = "(discid)",
@@ -2968,7 +2973,7 @@ CMDS.usage = {
 	["chatprivacy"] = "(AllUsers/NoOne/Friends)",
 	["chatprivacypublic"] = "(plr)",
 	["chatprivacyprivate"] = "(plr)",
-	["cameraoffset"] = "(num1,num2,num3)"
+	["cameraoffset"] = "(num1 | num2 | num3)",
 }
 CMDS.aliases = {
 	["8ballpu"] = "eightballpu",
@@ -3102,6 +3107,9 @@ CMDS.aliases = {
 	["tp"] = "goto",
 	["moveto"] = "walkto",
 	["unmoveto"] = "unwalkto",
+	["movetopos"] = "walktopos",
+	["movetopart"] = "walktopart",
+	["movetoclass"] = "walktoclass",
 	["re"] = "refresh",
 	["r"] = "reset",
 	["spos"] = "savepos",
@@ -8462,6 +8470,7 @@ function useCommand.walkto()
 	if arguments[2] then
 		target = findplr(arguments[2])
 		if target then
+		    cmdlp.Character.Humanoid.Jump = true
 			opx("-","Walking to "..target.Name)
 			walkto = true
 			repeat wait()
@@ -8478,6 +8487,46 @@ end
 function useCommand.unwalkto()
 	opx("-","Stopped walking to")
 	walkto = false
+end
+
+function useCommand.walktopos()
+    if not arguments[4] then
+        opx("*","4 arguments are required!")
+        return
+    end
+    opx("-","Now walking to "..arguments[2].." "..arguments[3].." "..arguments[4])
+    cmdlp.Character.Humanoid.Jump = true
+    cmdlp.Character.Humanoid.WalkToPoint = Vector3.new(arguments[2],arguments[3],arguments[4])
+end
+
+function useCommand.walktopart()
+    if not arguments[2] then
+        opx("*","2 arguments are required!")
+        return
+    end
+	for i,v in pairs(workspace:GetDescendants()) do
+		if v.Name == getstring(2) then
+			opx("-","Now walking to part")
+			cmdlp.Character.Humanoid.Jump = true
+			cmdlp.Character.Humanoid.WalkToPart = v
+			break
+		end
+	end
+end
+
+function useCommand.walktoclass()
+    if not arguments[2] then
+        opx("*","2 arguments are required!")
+        return
+    end
+	for i,v in pairs(workspace:GetDescendants()) do
+		if v.ClassName == getstring(2) then
+			opx("-","Now walking to part")
+			cmdlp.Character.Humanoid.Jump = true
+			cmdlp.Character.Humanoid.WalkToPart = v
+			break
+		end
+	end
 end
 
 YesGo = false
@@ -8944,7 +8993,7 @@ function useCommand.light()
 	end
 end
 
-function useCommand.anticheat()
+--[[function useCommand.anticheat()
 	if arguments[2] == "scriptdetectoff" then
 		if AntiCheat.ScriptDetectOff then
 			AntiCheat.ScriptDetectOff = false
@@ -9014,7 +9063,7 @@ function useCommand.anticheat()
 	end
 	opx("-","Turned on anticheat variable")
 	updatesaves()
-end
+end]]
 
 function useCommand.anticheats()
 	opx("-","Listing all anticheat variables")
@@ -13135,16 +13184,6 @@ function useCommand.hotkeyfly()
 	end
 end
 
-function useCommand.hotkeyxray()
-	if arguments[2] then
-		hotkeyxray = arguments[2]
-		updatesaves()
-		opx("Hotkey set to "..arguments[2])
-	else
-		opx("A key is required")
-	end
-end
-
 function useCommand.plague()
 	if arguments[2] then
 		opx("-","You started a plague!")
@@ -16235,7 +16274,6 @@ function useCommand.hotkeysitflyhold()
 			cmdlp.Character.Humanoid.Sit = false
 		end
 	end)
-
 	opx("-", "Sitfly enabled on key "..arguments[2]:upper().." on hold")
 end
 
@@ -16252,7 +16290,6 @@ function useCommand.hotkeyplatformflyhold()
 	workspace.Gravity = gravity
 	cmdlp.Character.Humanoid.Sit = false
 	cmdlp.Character.Humanoid.PlatformStand = false
-
 	local wantedkey = Enum.KeyCode[arguments[2]:upper()]
 	_G.connections["sitfly"]["down"] = game:GetService("UserInputService").InputBegan:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode == wantedkey then
@@ -16266,7 +16303,6 @@ function useCommand.hotkeyplatformflyhold()
 			cmdlp.Character.Humanoid.PlatformStand = false
 		end
 	end)
-
 	opx("-", "Platformfly enabled on key "..arguments[2]:upper().." on hold")
 end
 
@@ -16283,7 +16319,7 @@ function useCommand.hotkeysitflytoggle()
 	workspace.Gravity = gravity
 	cmdlp.Character.Humanoid.Sit = false
 	cmdlp.Character.Humanoid.PlatformStand = false
-	local toggled = false
+	local toggled = true
 	local wantedkey = Enum.KeyCode[arguments[2]:upper()]
 	_G.connections["sitfly"]["down"] = game:GetService("UserInputService").InputBegan:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode == wantedkey then
@@ -16297,7 +16333,6 @@ function useCommand.hotkeysitflytoggle()
 			end
 		end
 	end)
-
 	opx("-", "Sitfly enabled on key "..arguments[2]:upper().." on toggle")
 end
 
@@ -16314,7 +16349,7 @@ function useCommand.hotkeyplatformflytoggle()
 	workspace.Gravity = gravity
 	cmdlp.Character.Humanoid.Sit = false
 	cmdlp.Character.Humanoid.PlatformStand = false
-	local toggled = false
+	local toggled = true
 	local wantedkey = Enum.KeyCode[arguments[2]:upper()]
 	_G.connections["sitfly"]["down"] = game:GetService("UserInputService").InputBegan:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode == wantedkey then
@@ -16328,7 +16363,6 @@ function useCommand.hotkeyplatformflytoggle()
 			end
 		end
 	end)
-
 	opx("-", "Platformfly enabled on key "..arguments[2]:upper().." on toggle")
 end
 
@@ -16354,8 +16388,6 @@ function useCommand.hotkeyflyhold()
 			FLYING = false
 		end
 	end)
-
-
 	opx("-", "Fly enabled on key "..arguments[2]:upper().." on hold")
 end
 

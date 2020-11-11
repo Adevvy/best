@@ -3,7 +3,7 @@ if not game:FindFirstChild("PlayerGui") then repeat wait() until game:IsLoaded()
 -- Constraints: -----------------------|
 local ver = "1.8.5"
 local nextupd = "05/09/2020"
-local cordCode = "coming soon"
+local cordCode = "NOW HERE!"
 local changeLog = {
 	"Need help? Join our discord! "..cordCode;
 }
